@@ -27,6 +27,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/v1/auth/**")
                         .permitAll())
                 .csrf(csrf -> csrf.ignoringRequestMatchers("/api/v1/auth/**"))
+                .cors(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         return http.build();

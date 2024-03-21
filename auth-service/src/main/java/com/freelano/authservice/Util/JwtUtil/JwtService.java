@@ -33,6 +33,7 @@ public class JwtService {
         Date currentDate = new Date();
         Date expirationTime = new Date(currentDate.getTime() + 30 * 24 * 60 * 60 * 1000L);
         AuthEntity user = clientRepository.findByEmail(email);
+        System.out.println("{}"+user.getUserName());
         return Jwts.builder()
                 .setSubject(email)
                 .claim("userId",user.getUserId())

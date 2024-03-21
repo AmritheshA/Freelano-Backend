@@ -2,7 +2,10 @@ package com.freelano.authservice.Controller;
 
 import com.freelano.authservice.Dto.Request.LoginDto;
 import com.freelano.authservice.Dto.Request.RegisterDto;
+import com.freelano.authservice.Dto.Response.LoginResponse;
 import com.freelano.authservice.Service.Services.UserService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,9 +24,8 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@Valid @RequestBody LoginDto loginCredentials){
-
-        return clientService.login(loginCredentials);
+    public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginDto loginCredentials, HttpServletResponse response){
+        return clientService.login(loginCredentials,response);
     }
 
     @GetMapping("/check")
