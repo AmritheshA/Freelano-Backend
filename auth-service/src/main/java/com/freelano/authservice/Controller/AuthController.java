@@ -1,6 +1,7 @@
 package com.freelano.authservice.Controller;
 
 import com.freelano.authservice.Dto.Request.LoginDto;
+import com.freelano.authservice.Dto.Request.OauthRequest;
 import com.freelano.authservice.Dto.Request.RegisterDto;
 import com.freelano.authservice.Dto.Response.LoginResponse;
 import com.freelano.authservice.Service.Services.UserService;
@@ -28,13 +29,18 @@ public class AuthController {
         return clientService.login(loginCredentials,response);
     }
 
+    @PostMapping("/register")
+    public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterDto registerDetails,HttpServletResponse response){
+        return clientService.registerUser(registerDetails,response);
+    }
+
+    @PostMapping("/oauth/login")
+    public ResponseEntity<String> googleOauthLogin(@RequestBody OauthRequest oauthDetails,HttpServletResponse response){
+        return clientService.googleOauth(oauthDetails,response);
+    }
+
     @GetMapping("/check")
     public ResponseEntity<String> checkService(){
         return ResponseEntity.ok("Connection Successfully Established");
-    }
-
-    @PostMapping("/register")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterDto registerDetails){
-        return clientService.registerUser(registerDetails);
     }
 }

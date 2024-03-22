@@ -30,6 +30,7 @@ public class AuthEntity {
 
     @NotBlank(message = "Password cannot be blank")
     @NotNull(message = "Password cannot be null")
+    @JsonIgnore
     private String password;
 
     @NotNull(message = "Role cannot be null")
@@ -38,6 +39,7 @@ public class AuthEntity {
 
     @Temporal(TemporalType.DATE)
     private Date lastPasswordUpdated;
+
 
     public void setPassword(String password) {
         this.password = password;
